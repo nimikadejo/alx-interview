@@ -17,7 +17,7 @@ def canUnlockAll(boxes):
   while currentBox:
     index = currentBox.pop(0) #call top of stack
     for num in boxes[index]:
-      if not openedBox[num] and num < allBoxes:
+      if num >= 0 and not openedBox[num] and num < allBoxes:
         opened[num] = True
         currentBox.append(num)
   return all(opened)
