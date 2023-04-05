@@ -24,9 +24,9 @@ def minOperations(n):
         content += copy
     if (n < 20):
         if n % 2 == 0:
-            ops = ((n/2) - 1) + 2
+            ops = ((n/2) - 1) + 3
         if n % 3 == 0:
-            ops = ((n/3) - 1) + 2
+            ops = ((n/3) - 1) + 4
     else:
         ops = n
     return ops
