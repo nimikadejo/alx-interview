@@ -7,9 +7,6 @@ def minOperations(n):
     Determines minimum number of operations to get
     1 to n with copy all and paste
     '''
-    if n < 1:
-        return 0
-
     ops = 0
     content = 1
     copy = 0
