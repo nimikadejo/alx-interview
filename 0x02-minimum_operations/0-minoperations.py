@@ -4,26 +4,26 @@
 
 def minOperations(n):
     '''
-    Determines minimum number of operations to get
+    Deternmines minimum number of operations to get
     1 to n with copy all and paste
     '''
     if n < 1:
         return 0
 
-    ops = 0
     content = 1
     copy = 0
+    ops = 0
 
-    if n > 1:
-        while content < n:
-            if n % content == 0:
-                copy = content
-                content += copy
-                ops += 2  # copy and paste
-            else:
-                content += copy
-                ops += 1  # paste
+    while content < n:
+        if n % content == 0:
+            copy = content
+            ops += 2
+        else:
+            copy += content
+            ops += 1
+        content += copy
+
+    if content == n:
+        return ops
     else:
-        ops = n
-
-    return ops
+        return 0
