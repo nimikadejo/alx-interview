@@ -9,7 +9,7 @@ def minOperations(n):
     '''
     if n < 1:
         return 0
-    
+
     ops = 0
     content = 1
     copy = 0
@@ -24,6 +24,6 @@ def minOperations(n):
                 content += copy
                 ops += 1  # paste
     else:
-        ops = 1
+        ops = n
 
     return ops
