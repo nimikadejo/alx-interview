@@ -1,39 +1,39 @@
 #!/usr/bin/python3
+'''
+A script that reads stdin line by line and computes metrics
+'''
+
 
 import sys
-from collections import defaultdict
 
-files = 0
-status = defaultdict(int)
-lines = 0
+choice = {'200': 0, '301': 0, '400': 0, '401': 0,
+          '403': 0, '404': 0, '405': 0, '500': 0}
+total_size = 0
+n = 0
 
 try:
     for line in sys.stdin:
-        lines += 1
-        fields = line.split()
+        line_list = line.split()
+        if len(line_list) > 4:
+            code = line_list[-2]
+            size = int(line_list[-1])
+            if code in choice:
+                choice[code] += 1
+            total_size += size
+            n += 1
 
-        if len(fields) != 7:
-            continue
-
-        file_size = int(fields[6])
-        status_code = int(fields[5])
-
-        files += file_size
-        status[status_code] += 1
-
-        if lines % 10 == 0:
-            print(f"Total file size: {files}")
-
-            for code in sorted(status.keys()):
-                if code in [200, 301, 400, 401, 403, 404, 405, 500]:
-                    print(f"{code}: {status[code]}")
-
-        try:
-            pass
-        except KeyboardInterrupt:
-            print("Exiting...")
-            sys.exit(0)
+        if n == 10:
+            n = 0
+            print('File size: {}'.format(total_size))
+            for key, value in sorted(choice.items()):
+                if value != 0:
+                    print('{}: {}'.format(key, value))
 
 except KeyboardInterrupt:
-    print("Exiting...")
-    sys.exit(0)
+    pass
+
+finally:
+    print('File size: {}'.format(total_size))
+    for key, value in sorted(choice.items()):
+        if value != 0:
+            print('{}: {}'.format(key, value))
