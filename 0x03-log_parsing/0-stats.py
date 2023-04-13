@@ -6,6 +6,15 @@ A script that reads stdin line by line and computes metrics
 
 import sys
 
+
+def print__http_status_logs(dic, total_size):
+    """ Prints std line """
+    print("File size: {:d}".format(total_size))
+    for i in sorted(dic.keys()):
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
+
+
 choice = {'200': 0, '301': 0, '400': 0, '401': 0,
           '403': 0, '404': 0, '405': 0, '500': 0}
 total_size = 0
@@ -21,13 +30,6 @@ try:
                 choice[code] += 1
             total_size += size
             n += 1
-
-        if n == 10:
-            n = 0
-            print('File size: {}'.format(total_size))
-            for key, value in sorted(choice.items()):
-                if value != 0:
-                    print('{}: {}'.format(key, value))
 
 except Exception as err:
     pass
