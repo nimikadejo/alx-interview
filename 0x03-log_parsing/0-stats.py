@@ -13,11 +13,11 @@ n = 0
 
 try:
     for line in sys.stdin:
-        line_list = line.split()
+        line_list = line.split(" ")
         if len(line_list) > 4:
             code = line_list[-2]
             size = int(line_list[-1])
-            if code in choice:
+            if code in choice.keys():
                 choice[code] += 1
             total_size += size
             n += 1
@@ -29,7 +29,7 @@ try:
                 if value != 0:
                     print('{}: {}'.format(key, value))
 
-except KeyboardInterrupt:
+except Exception as err:
     pass
 
 finally:
