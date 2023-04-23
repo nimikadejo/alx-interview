@@ -4,7 +4,7 @@ A script that determines if a given data set represents a valid UTF-8 encoding.
 '''
 
 
-def valid_utf8(data):
+def validUTF8(data):
     #  Initialize the number of bytes left to read for a character
     bytes_left = 0
 
