@@ -24,4 +24,5 @@ def validUTF8(data):
             bytes -= 1
     if bytes > 0:
         return False
+
     return True
