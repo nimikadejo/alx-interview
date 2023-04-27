@@ -7,12 +7,6 @@ A script that solves the N queens problem.
 import sys
 
 
-#!/usr/bin/python3
-'''N queens solution finder.
-'''
-import sys
-
-
 solns = []
 '''The list of possible solutions to the N queens problem.'''
 n = 0
