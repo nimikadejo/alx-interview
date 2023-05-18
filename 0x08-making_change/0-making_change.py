@@ -7,6 +7,7 @@ def makeChange(coins, total):
     '''
     if total < 0:
         return 0
+    coins.sort()
     arr = [0] + [float("inf")] * (total)
 
     for num in coins:
