@@ -58,9 +58,9 @@ def island_perimeter(grid):
     """
     if grid == []:
         return 0
-    l = len(grid)
+    length = len(grid)
     w = len(grid[0])
-    for i in range(l):
+    for i in range(length):
         for j in range(w):
             if grid[i][j] == 1:
                 boundary(grid, i, j)
