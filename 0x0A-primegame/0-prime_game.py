@@ -13,6 +13,10 @@ def isWinner(x, nums):
         x (int): number of rounds
         nums (int): an array of n
     """
+    if x < 1 or not nums:
+        return None
+    maria_wins, ben_wins = 0, 0
+
     def isPrime(n):
         if n <= 1:
             return False
