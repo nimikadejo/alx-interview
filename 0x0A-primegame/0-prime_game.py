@@ -17,49 +17,20 @@ def isWinner(x, nums):
         return None
     maria_wins, ben_wins = 0, 0
 
-    def isPrime(n):
-        if n <= 1:
-            return False
-        for i in range(2, int(n ** 0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
+    max_n = max(nums)
+    primes = [True for _ in range(1, max_n + 1, 1)]
+    primes[0] = False
 
-    # Function to find the next prime number in the set
-    def findNextPrime(nums):
-        for num in nums:
-            if isPrime(num):
-                return num
+    for i, is_prime in enumerate(primes, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, max_n + 1, i):
+            primes[j - 1] = False
+
+    for _, n in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+        ben_wins += primes_count % 2 == 0
+        maria_wins += primes_count % 2 == 1
+    if maria_wins == ben_wins:
         return None
-
-    # Function to remove a number and its multiples from the set
-    def removeMultiples(nums, prime):
-        return [num for num in nums if num % prime != 0]
-
-    # Function to determine the winner of a single round
-    def playRound(nums):
-        while True:
-            prime = findNextPrime(nums)
-            if prime is None:
-                return "Ben"
-            nums = removeMultiples(nums, prime)
-            if len(nums) == 0:
-                return "Maria"
-
-    # Play x rounds and keep track of the winners
-    winners = []
-    for n in nums:
-        winner = playRound(list(range(1, n + 1)))
-        winners.append(winner)
-
-    # Count the number of wins for each player
-    maria_wins = winners.count("Maria")
-    ben_wins = winners.count("Ben")
-
-    # Determine the player with the most wins
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif ben_wins > maria_wins:
-        return "Ben"
-    else:
-        return None
+    return 'Maria' if maria_wins > ben_wins else 'Ben'
